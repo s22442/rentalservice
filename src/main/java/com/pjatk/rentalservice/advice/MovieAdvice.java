@@ -1,9 +1,11 @@
 package com.pjatk.rentalservice.advice;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.net.ConnectException;
 
@@ -20,9 +22,9 @@ public class MovieAdvice {
         return ResponseEntity.notFound().build();
     }
 
-    @ExceptionHandler(HttpClientErrorException.Conflict.class)
+    @ExceptionHandler(HttpServerErrorException.InternalServerError.class)
     public ResponseEntity<String> handleExternalServerException() {
-        return ResponseEntity.internalServerError().build();
+        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
     }
 
     @ExceptionHandler(ConnectException.class)
