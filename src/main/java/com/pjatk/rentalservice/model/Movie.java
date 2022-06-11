@@ -1,11 +1,21 @@
 package com.pjatk.rentalservice.model;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value = "Movie", description = "A movie")
 public class Movie {
+    @ApiModelProperty(value = "The unique identifier of the given movie")
     private Integer id;
+
+    @ApiModelProperty(value = "The name of the given movie")
     private String name;
+
+    @ApiModelProperty(value = "The category of the given movie")
     private MovieCategory category;
 
+    @ApiModelProperty(value = "The availability of the given movie")
     private boolean isAvailable;
 
     public Movie() {
